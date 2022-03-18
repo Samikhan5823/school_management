@@ -86,9 +86,7 @@ const Dashboard = (props) => {
               </div>
             </div>
             <div className="col-lg-12 col-xl-4 mb-sm-2">
-              <div className=" panel-heading">
-                <h6></h6>
-              </div>
+           
               <div
                 className=" panel panel-flat"
                 style={{ height: '30vh' }}
@@ -123,11 +121,7 @@ const Dashboard = (props) => {
                     </li>
                   </ul>
                 </div>
-               
               </div>
-
-
-
               <div
                 className=" panel panel-flat"
                 style={{ height: '30vh'}}

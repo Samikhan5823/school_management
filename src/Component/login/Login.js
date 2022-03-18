@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import LoginAction from '../actions/LoginAction'
+import LoginAction from '../redux/actions/LoginAction'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ForgetPassword from './ForgetPassword'
 const Login = () => {
   const loginStore = useSelector((state) => state.LoginReducer)
-  console.log('state store', loginStore)
-  // console.log("logintokin",loginToken);
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loginError, setLoginError] = useState('Logined failed')
   const [openForgetPass, setOpenForgetPass] = useState(false)
   const [showpasordtoggle, setShowpasordtoggle] = useState(false)
 
@@ -57,7 +54,7 @@ const Login = () => {
                 <form autoComplete="nope">
                   <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                     {loginStore.loginFailed ? (
-                      <p className="text-danger">{loginError}</p>
+                      <p className="text-danger">please select</p>
                     ) : null}
                     <p className="lead fw-normal mb-0 me-3">Sign in with</p>
                     <button
@@ -150,7 +147,7 @@ const Login = () => {
                         Remember me
                       </label>
                     </div>
-                    <a href="#!" className="text-body" onClick={openForgetPassPopUp}>
+                    <a href="#/" className="text-body" onClick={openForgetPassPopUp}>
                       Forgot password?
                     </a>
                   </div>
@@ -166,7 +163,7 @@ const Login = () => {
                     </button>
                     <p className="small fw-bold mt-2 pt-1 mb-0">
                       Don't have an account?{' '}
-                      <a href="#!" className="link-danger">
+                      <a href="#/" className="link-danger">
                         Register
                       </a>
                     </p>

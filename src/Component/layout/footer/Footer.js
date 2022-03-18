@@ -1,4 +1,4 @@
-// import medifusionLOGO from '../../assets/img/medifusion-logo.png'
+import './footer.css'
 export default function Footer() {
   return (
     <footer>

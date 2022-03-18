@@ -7,7 +7,7 @@ import {
   useExpanded,
 } from 'react-table'
 import './customize.css'
-import TableLoader from '../Loaders/TableLoader'
+import TableLoader from './Loaders/TableLoader'
 // import { SwalAlert } from '../../../utils/swalAlertAndConfirm'
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -33,7 +33,6 @@ export const Table = React.memo(
     const [pageChange, setpageChange] = useState(1)
     const [singleRowSelectId, setSingleRowSelectId] = useState('')
     const [isLoading, setIsLoading] = useState(true)
-
     const pagination = props.pagination
     const handlePageChange = props.handlePageChange
     const handlePerRowChange = props.handlePerRowsChange
@@ -63,7 +62,7 @@ export const Table = React.memo(
       setPageSize,
       state: { pageSize },
       selectedFlatRows,
-      state: { expanded },
+      
     } = useTable(
       {
         columns,

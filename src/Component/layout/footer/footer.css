@@ -1,0 +1,43 @@
+/************** footer *************/
+:root {
+    --dark-black: #293137;
+    --strong-grey: #32446C;
+    --main-blue: #065789;
+  
+  }
+  
+.displaynone {
+    display: none;
+  }
+  
+  .displayblock {
+    display: block !important;
+  }
+  
+  .nav-link {
+    display: block;
+    font-size: 0.9em;
+    padding: 0.5rem 1rem;
+    
+  }
+  
+  a {
+    color: var(--dark-black);
+  }
+  
+  .footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: var(--dark-black);
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .footer-logo {
+    max-width: 62px;
+    height: auto;
+  }
+  

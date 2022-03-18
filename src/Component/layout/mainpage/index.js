@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
-import Dashboard from '../SiderbarMenu/DashBoard/Dashboard'
-import Finance from '../SiderbarMenu/Financepage/Finance'
-import Login from '../login/Login'
-import DashboardLayout from './DashboardLayout'
-import Book from '../SiderbarMenu/Library/Book'
-import BooksCategory from '../SiderbarMenu/Library/BooksCategory'
-import Attendance from '../SiderbarMenu/StudentPage/AttendancePage/Attendance'
-import Attendanceindex from '../SiderbarMenu/StudentPage/AttendancePage/Attendanceindex'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from '../../SiderbarMenu/DashBoard/Dashboard'
+import Finance from '../../SiderbarMenu/Financepage/Finance'
+import Login from '../../login/Login'
+import DashboardLayout from '../dashboardlayout/DashboardLayout'
+import Book from '../../SiderbarMenu/Library/Book'
+import BooksCategory from '../../SiderbarMenu/Library/BooksCategory'
+import Attendanceindex from '../../SiderbarMenu/StudentPage/AttendancePage/Attendanceindex'
 function MainPage() {
   return (
     <>

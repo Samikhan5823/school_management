@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import allReducers from './Component/reducers/allReducers';
-import { BrowserRouter as Router, } from 'react-router-dom'
+import allReducers from './Component/redux/reducers/allReducers';
 import 'font-awesome/css/font-awesome.min.css';
 
 const store = createStore(allReducers)
 ReactDOM.render(
-     <Provider store={store}>
-   {/* <Router> */}
-        <App/>
-      {/* </Router> */}
-    </Provider>,
+  <Provider store={store}>
+
+    <App />
+
+  </Provider>,
   document.getElementById('root')
 );
 
