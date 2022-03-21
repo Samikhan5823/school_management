@@ -1,13 +1,12 @@
 import React from 'react'
-
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom'
 import Dashboard from '../../SiderbarMenu/DashBoard/Dashboard'
-import Finance from '../../SiderbarMenu/Financepage/Finance'
 import Login from '../../login/Login'
 import DashboardLayout from '../dashboardlayout/DashboardLayout'
 import Book from '../../SiderbarMenu/Library/Book'
 import BooksCategory from '../../SiderbarMenu/Library/BooksCategory'
 import Attendanceindex from '../../SiderbarMenu/StudentPage/AttendancePage/Attendanceindex'
+import EmpManagement from '../../SiderbarMenu/Financepage/EmpManagement'
 function MainPage() {
   return (
     <>
@@ -15,8 +14,8 @@ function MainPage() {
 
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={< Navigate to='/login'/>} />
-      
+          <Route path="*" element={< Navigate to='/login' />} />
+
           <Route
             path="/"
             element={<DashboardLayout />} >
@@ -31,7 +30,7 @@ function MainPage() {
 
             </Route>
             <Route   >
-              <Route path="financeCategory/finance" element={<Finance />} />
+              <Route path="financeCategory/empmanagement" element={<EmpManagement />} />
             </Route>
 
           </Route>
