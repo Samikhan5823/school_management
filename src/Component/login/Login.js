@@ -3,7 +3,10 @@ import LoginAction from '../redux/actions/LoginAction'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ForgetPassword from './ForgetPassword'
+import Validator from '../Utilties/validator'
+import { enumUtil } from '../Utilties/enum'
 const Login = () => {
+
   const loginStore = useSelector((state) => state.LoginReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -12,15 +15,47 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [openForgetPass, setOpenForgetPass] = useState(false)
   const [showpasordtoggle, setShowpasordtoggle] = useState(false)
+  const[saveClicked,setSaveClick]=useState(false)
+  const[validationModal,setvalidationModal]=useState({ 
+     emailError:'',
+  passwordError:''})
 
+    // For Validation Purpose
+    const setValidation = () => {
+      setvalidationModal((prevState)=>({
+       ...prevState,
+       emailError:Validator(email,
+        enumUtil.enumValidationType.Required,
+        'Email'
+       ),
+       passwordError:Validator(password,
+        enumUtil.enumValidationType.Required,
+        'Password'
+        )
+      }))
+
+      
+    }
   const handleChange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value)
     } else {
       setPassword(e.target.value)
     }
+    setValidation()
   }
   const handleLogin = () => {
+    setValidation()
+    let validation = Validator(
+      [validationModal],
+      enumUtil.enumValidationType.NullCheck,
+    )
+if(validation){
+  setSaveClick(true)
+}else{
+  setSaveClick(false)
+
+}
     dispatch(LoginAction({ email, password }))
   }
   useEffect(() => {
@@ -52,7 +87,7 @@ const Login = () => {
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form autoComplete="nope">
-                 
+                 <h1 className='text-center mt-0'>VPS</h1>
                   <div className="form-outline mb-4">
                     <input
                       type="email"
@@ -63,6 +98,8 @@ const Login = () => {
                       value={email}
                       onChange={(e) => handleChange(e)}
                     />
+                    {saveClicked&&validationModal.emailError}
+
                     <label className="form-label" htmlFor="form3Example3">
                       Email address
                     </label>
@@ -79,6 +116,7 @@ const Login = () => {
                       value={password}
                       onChange={(e) => handleChange(e)}
                     />
+                    {saveClicked&&validationModal.passwordError}
                     <div
                       style={{
                         position: 'relative',
@@ -94,7 +132,7 @@ const Login = () => {
                           position: 'absolute',
                           right: '20px',
                           top: '0px',
-                          marginTop: '-40px',
+                          marginTop: '-45px',
                           color: '#3392FF',
                           fontSize:'30px'
                         }}
@@ -104,8 +142,8 @@ const Login = () => {
                       Password
                     </label>
                   </div>
-                  {loginStore.loginFailed ? (
-                      <p className="text-danger">Wrong Email & Password</p>
+                  {loginStore.loginFailed &&saveClicked===false? (
+                      <p className="text-danger">Please Enter Valid Email and Password</p>
                     ) : null}
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="form-check mb-0">

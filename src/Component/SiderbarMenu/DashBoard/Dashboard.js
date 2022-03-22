@@ -123,7 +123,7 @@ const Dashboard = (props) => {
               </div>
 
               <div
-                className=" panel panel-flat mb-5 mb-sm-0 mb-md-0"
+                className=" panel panel-flat mb-sm-0 "
               >
                 <ul className="news-heading">
                   <li className="active">
