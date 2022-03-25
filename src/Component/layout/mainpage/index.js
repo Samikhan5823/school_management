@@ -16,9 +16,7 @@ function MainPage() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={< Navigate to='/login' />} />
 
-          <Route
-            path="/"
-            element={<DashboardLayout />} >
+          <Route path="/"element={<DashboardLayout />} >
 
             <Route index element={<Dashboard />} />
             <Route >

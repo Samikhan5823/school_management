@@ -10,7 +10,6 @@ const Login = () => {
   const loginStore = useSelector((state) => state.LoginReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [openForgetPass, setOpenForgetPass] = useState(false)
