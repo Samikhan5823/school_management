@@ -6,7 +6,8 @@ import DashboardLayout from '../dashboardlayout/DashboardLayout'
 import Book from '../../SiderbarMenu/Library/Book'
 import BooksCategory from '../../SiderbarMenu/Library/BooksCategory'
 import Attendanceindex from '../../SiderbarMenu/StudentPage/AttendancePage/Attendanceindex'
-import EmpManagement from '../../SiderbarMenu/Financepage/EmpManagement'
+import AddDesignation from '../../SiderbarMenu/Hr/payroll/addDesignation/AddDesignation'
+import AddDepartment from '../../SiderbarMenu/Hr/payroll/addDepartmnt/AddDepartment'
 function MainPage() {
   return (
     <>
@@ -28,7 +29,9 @@ function MainPage() {
 
             </Route>
             <Route   >
-              <Route path="financeCategory/empmanagement" element={<EmpManagement />} />
+              <Route path="hr/payroll/emp-management/addepartment" element={<AddDepartment />} />
+              <Route path="hr/payroll/emp-management/addesignation" element={<AddDesignation />} />
+
             </Route>
 
           </Route>

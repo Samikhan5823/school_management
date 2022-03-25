@@ -13,9 +13,11 @@ import { connect } from 'react-redux'
 import Book from '../../SiderbarMenu/Library/Book'
 import BooksCategory from '../../SiderbarMenu/Library/BooksCategory'
 import Attendanceindex from '../../SiderbarMenu/StudentPage/AttendancePage/Attendanceindex'
-import EmpManagement from '../../SiderbarMenu/Financepage/EmpManagement'
+import AddDepartment from '../../SiderbarMenu/Hr/payroll/addDepartmnt/AddDepartment'
+import AddDesignation from '../../SiderbarMenu/Hr/payroll/addDesignation/AddDesignation'
+
 function DashboardLayout(props) {
-    const accordionData = [
+    const sideBarData = [
         {
             name: 'Dashboard',
             img: <AiOutlineHome />,
@@ -58,16 +60,21 @@ function DashboardLayout(props) {
             ],
         },
         {
-            name: 'FinanceCat',
+            name: 'HR/Payroll',
             img: <BsCollection />,
             subChild: [
                 {
-                    name: 'Finance',
+                    name: 'Emp-Management',
                     subTab: [
                         {
-                            name: 'Emp Management',
-                            path: 'financeCategory/empmanagement',
-                            component: <EmpManagement />,
+                            name: 'Add-Department',
+                            path: 'hr/payroll/emp-management/addepartment',
+                            component: <AddDepartment />,
+                        },
+                        {
+                            name: 'Add-Designation',
+                            path: 'hr/payroll/emp-management/addesignation',
+                            component: <AddDesignation />,
                         }
                     ],
                 },
@@ -123,7 +130,7 @@ function DashboardLayout(props) {
             >
                 <h3 className="logo">VPS</h3>
                 <div className="accordion "  >
-                    {accordionData.map((title, index) => (
+                    {sideBarData.map((title, index) => (
                         <div className="accordion-item " style={{ background: 'transparent' }}>
                             <div key={index} className="accordion-title d-flex justify-content-center  " style={{ fontSize: '22px', }} onClick={() => handler(index)}>
                                 <div >
@@ -147,7 +154,7 @@ function DashboardLayout(props) {
                                                     } {row.subTab && <div className='text-white'>{activeSubMenu === i ? <TiArrowSortedDown /> : <MdPlayArrow />}</div>}
                                                 </span>
                                             </div>
-                                            {activeSubMenu === i && <div className="accordion-content  d-flex justify-content-center">
+                                            {activeSubMenu === i && <div className="accordion-content  d-flex justify-content-center" style={{flexDirection: 'column',textAlign: 'center'}}>
                                                 {row.subTab && row.subTab.map((ele, ind) => {
                                                     return <div key={ind} className='p-2' style={{ fontSize: '18px' }} onClick={(e) => e.stopPropagation()}>
                                                         {/* {ele.img} */}
