@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import ForgetPassword from './ForgetPassword'
 import Validator from '../Utilties/validator'
 import { enumUtil } from '../Utilties/enum'
+
+import ButtonLoader from '../Utilties/Loaders/ButtonLoader'
+
 const Login = () => {
+  const [loader, setLoader] = useState(false)
 
   const loginStore = useSelector((state) => state.LoginReducer)
   const dispatch = useDispatch()
@@ -14,28 +18,30 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [openForgetPass, setOpenForgetPass] = useState(false)
   const [showpasordtoggle, setShowpasordtoggle] = useState(false)
-  const[saveClicked,setSaveClick]=useState(false)
-  const[validationModal,setvalidationModal]=useState({ 
-     emailError:'',
-  passwordError:''})
+  const [saveClicked, setSaveClick] = useState(false)
+  const [validationModal, setvalidationModal] = useState({
+    emailError: '',
+    passwordError: ''
+  })
 
-    // For Validation Purpose
-    const setValidation = () => {
-      setvalidationModal((prevState)=>({
-       ...prevState,
-       emailError:Validator(email,
+  // For Validation Purpose
+  const setValidation = () => {
+    setvalidationModal((prevState) => ({
+      ...prevState,
+      emailError: Validator(email,
         enumUtil.enumValidationType.Required,
         'Email'
-       ),
-       passwordError:Validator(password,
+      ),
+      passwordError: Validator(password,
         enumUtil.enumValidationType.Required,
         'Password'
-        )
-      }))
+      )
+    }))
 
-      
-    }
+
+  }
   const handleChange = (e) => {
+
     if (e.target.name === 'email') {
       setEmail(e.target.value)
     } else {
@@ -44,17 +50,20 @@ const Login = () => {
     setValidation()
   }
   const handleLogin = () => {
+    setLoader(true)
     setValidation()
     let validation = Validator(
       [validationModal],
       enumUtil.enumValidationType.NullCheck,
     )
-if(validation){
-  setSaveClick(true)
-}else{
-  setSaveClick(false)
+    if (validation) {
+      setSaveClick(true)
+    } else {
+      setSaveClick(false)
 
-}
+    }
+    // setLoader(false)
+   
     dispatch(LoginAction({ email, password }))
   }
   useEffect(() => {
@@ -86,7 +95,7 @@ if(validation){
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form autoComplete="nope">
-                 <h1 className='text-center mt-0'>VPS</h1>
+                  <h1 className='text-center mt-0'>VPS</h1>
                   <div className="form-outline mb-4">
                     <input
                       type="email"
@@ -97,7 +106,7 @@ if(validation){
                       value={email}
                       onChange={(e) => handleChange(e)}
                     />
-                    {saveClicked&&validationModal.emailError}
+                    {saveClicked && validationModal.emailError}
 
                     <label className="form-label" htmlFor="form3Example3">
                       Email address
@@ -115,7 +124,7 @@ if(validation){
                       value={password}
                       onChange={(e) => handleChange(e)}
                     />
-                    {saveClicked&&validationModal.passwordError}
+                    {saveClicked && validationModal.passwordError}
                     <div
                       style={{
                         position: 'relative',
@@ -133,7 +142,7 @@ if(validation){
                           top: '0px',
                           marginTop: '-45px',
                           color: '#3392FF',
-                          fontSize:'30px'
+                          fontSize: '30px'
                         }}
                       ></i>
                     </div>
@@ -141,9 +150,9 @@ if(validation){
                       Password
                     </label>
                   </div>
-                  {loginStore.loginFailed &&saveClicked===false? (
-                      <p className="text-danger">Please Enter Valid Email and Password</p>
-                    ) : null}
+                  {loginStore.loginFailed && saveClicked === false ? (
+                    <p className="text-danger">Please Enter Valid Email and Password</p>
+                  ) : null}
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="form-check mb-0">
                       <input
@@ -167,8 +176,10 @@ if(validation){
                       className="btn btn-primary btn-lg"
                       style={{ paddingLeft: '2.5rem', paddingRright: '2.5rem' }}
                       onClick={handleLogin}
+                      disabled={loader}
                     >
                       Login
+                      {loader ? <ButtonLoader small={true} /> : ''}
                     </button>
                     <p className="small fw-bold mt-2 pt-1 mb-0">
                       Don't have an account?{' '}

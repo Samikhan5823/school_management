@@ -112,7 +112,6 @@ const Crud = () => {
             setFilteredData(c)
         }
 
-
         setcardata({
             [name]: value,
         })
